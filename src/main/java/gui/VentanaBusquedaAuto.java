@@ -12,12 +12,12 @@ import java.util.List;
 public class VentanaBusquedaAuto extends Ventana implements ActionListener {
     Automotora automotora;
 
-    JComboBox <MarcaVehiculo> marcasBox = new JComboBox<>(MarcaVehiculo.values());
-    JButton volverBtn;
-    JButton buscarBtn;
-    JButton cancelarBtn;
+    JComboBox <MarcaVehiculo> marcas = new JComboBox<>(MarcaVehiculo.values());
+    JButton volver;
+    JButton buscar;
+    JButton cancelar;
 
-    JTextField nombreField;
+    JTextField nombre;
 
     public VentanaBusquedaAuto (Automotora automotora) {
         this.automotora = automotora;
@@ -30,23 +30,23 @@ public class VentanaBusquedaAuto extends Ventana implements ActionListener {
         JLabel marca = this.generarEtiqueta("Marca: ", 20,275,120,25,
                 "Calibri", 17);
 
-        nombreField = this.generarCampoDeTexto(160, 200, 150, 20);
+        nombre = this.generarCampoDeTexto(160, 200, 150, 20);
 
-        this.add(marcasBox);
-        marcasBox.setBounds(160, 275, 120, 20);
+        this.add(marcas);
+        marcas.setBounds(160, 275, 120, 20);
 
 
-        buscarBtn = this.generarBoton("Buscar", 100,350,100,50);
-        cancelarBtn = this.generarBoton("Cancelar", 200,350,100,50);
+        buscar = this.generarBoton("Buscar", 100,350,100,50);
+        cancelar = this.generarBoton("Cancelar", 200,350,100,50);
 
-        buscarBtn.addActionListener(this);
-        cancelarBtn.addActionListener(this);
+        buscar.addActionListener(this);
+        cancelar.addActionListener(this);
     }
 
     public void buscarAuto() {
-        List<Vehiculo> vehiculos = this.automotora.buscarAutoMarca(marcasBox.getSelectedItem().toString());
+        List<Vehiculo> vehiculos = this.automotora.buscarAutoMarca(marcas.getSelectedItem().toString());
         if(!nombreField.getText().equals("")) {
-            vehiculos = this.automotora.buscarAutoNombre(nombreField.getText(), vehiculos);
+            vehiculos = this.automotora.buscarAutoNombre(nombre.getText(), vehiculos);
         }
 
         JOptionPane.showMessageDialog(this, vehiculos.size() > 0 ?
@@ -57,11 +57,11 @@ public class VentanaBusquedaAuto extends Ventana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == cancelarBtn) {
-            nombreField.setText("");
+        if(e.getSource() == cancelar) {
+            nombre.setText("");
             this.dispose();
             new Menu(this.automotora);
-        } else if(e.getSource() == buscarBtn) {
+        } else if(e.getSource() == buscar) {
             buscarAuto();
         }
     }
