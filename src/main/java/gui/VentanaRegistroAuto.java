@@ -11,17 +11,17 @@ import java.awt.event.ActionListener;
 public class VentanaRegistroAuto extends Ventana implements ActionListener {
     Automotora automotora;
 
-    JComboBox <MarcaVehiculo> marcasBox = new JComboBox<>(MarcaVehiculo.values());
-    JComboBox <ColorVehiculo> colorVehiculoBox = new JComboBox<>(ColorVehiculo.values());
-    JComboBox añoBox;
-    JFormattedTextField precioField;
-    JFormattedTextField kmField;
+    JComboBox <MarcaVehiculo> marcas = new JComboBox<>(MarcaVehiculo.values());
+    JComboBox <ColorVehiculo> colorVehiculo = new JComboBox<>(ColorVehiculo.values());
+    JComboBox año;
+    JFormattedTextField precio;
+    JFormattedTextField kilometros;
 
-    JTextField nombreField;
+    JTextField nombre;
 
-    JButton volverBtn;
-    JButton aceptarBtn;
-    JButton cancelarBtn;
+    JButton volver;
+    JButton aceptar;
+    JButton cancelar;
 
     public VentanaRegistroAuto (Automotora automotora) {
         JLabel titulo = this.generarEtiqueta("Registro Vehículos", 70, 50,
@@ -40,38 +40,38 @@ public class VentanaRegistroAuto extends Ventana implements ActionListener {
         JLabel precio = this.generarEtiqueta("Precio: ", 20,300,120,25,
                 "Calibri", 17);
 
-        JLabel km = this.generarEtiqueta("Km recorridos: ", 20,350,120,25,
+        JLabel kilometros = this.generarEtiqueta("Km recorridos: ", 20,350,120,25,
                 "Calibri", 17);
 
 
         nombreField = this.generarCampoDeTexto(160, 100, 150, 20);
 
-        this.add(colorVehiculoBox);
-        colorVehiculoBox.setBounds(160, 150, 120, 20);
+        this.add(colorVehiculo);
+        colorVehiculo.setBounds(160, 150, 120, 20);
 
-        this.add(marcasBox);
-        marcasBox.setBounds(160, 200, 120, 20);
+        this.add(marcas);
+        marcas.setBounds(160, 200, 120, 20);
 
-        añoBox = this.generarComboBox(1950, 2022, 160, 250,120,20);
+        año = this.generarComboBox(1950, 2022, 160, 250,120,20);
 
-        precioField = this.generarCampoDeTextoFormateado(160, 300, 150, 20);
-        kmField = this.generarCampoDeTextoFormateado(160, 350, 150, 20);
-
-
-        aceptarBtn = this.generarBoton("Aceptar", 100,450,100,50);
-        cancelarBtn = this.generarBoton("Cancelar", 200,450,100,50);
+        precio = this.generarCampoDeTextoFormateado(160, 300, 150, 20);
+        kilometros = this.generarCampoDeTextoFormateado(160, 350, 150, 20);
 
 
-        aceptarBtn.addActionListener(this);
-        cancelarBtn.addActionListener(this);
+        aceptar = this.generarBoton("Aceptar", 100,450,100,50);
+        cancelar = this.generarBoton("Cancelar", 200,450,100,50);
+
+
+        aceptar.addActionListener(this);
+        cancelar.addActionListener(this);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == cancelarBtn) {
-            nombreField.setText("");
-            precioField.setText("");
-            kmField.setText("");
+        if(e.getSource() == cancelar) {
+            nombre.setText("");
+            precio.setText("");
+            kilometros.setText("");
             this.dispose();
             new Menu(this.automotora);
         }
