@@ -13,7 +13,6 @@ public class VentanaBusquedaAuto extends Ventana implements ActionListener {
     Automotora automotora;
 
     JComboBox <MarcaVehiculo> marcas = new JComboBox<>(MarcaVehiculo.values());
-    JButton volver;
     JButton buscar;
     JButton cancelar;
 
