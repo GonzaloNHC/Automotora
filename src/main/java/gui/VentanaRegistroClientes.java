@@ -10,18 +10,18 @@ import java.awt.event.ActionListener;
 import java.text.NumberFormat;
 
 public class VentanaRegistroClientes extends Ventana implements ActionListener {
+  
+{
     Automotora automotora;
 
-    JTextField nombreField;
+    JTextField nombre;
     JTextField rutField;
-    JTextField direccionField;
-    JTextField numeroField;
-    //JFormattedTextField numeroField;
-    JTextField correoField;
+    JTextField direccion;
+    JTextField numero;
+    JTextField correo;
 
-    JButton volverBtn;
-    JButton aceptarBtn;
-    JButton cancelarBtn;
+    JButton aceptar;
+    JButton cancelar;
 
     public VentanaRegistroClientes(Automotora automotora) {
         this.automotora = automotora;
@@ -35,26 +35,26 @@ public class VentanaRegistroClientes extends Ventana implements ActionListener {
         JLabel numero = this.generarEtiqueta("Número telefónico: ", 20,250,120,25);
         JLabel correo = this.generarEtiqueta("Correo electrónico: ", 20,300,120,25);
 
-        this.nombreField = this.generarCampoDeTexto(150,100,200,25);
+        this.nombre = this.generarCampoDeTexto(150,100,200,25);
         this.rutField = this.generarCampoDeTexto(150,150,200,25);
-        this.direccionField = this.generarCampoDeTexto(150,200,200,25);
-        this.numeroField = this.generarCampoDeTexto(150,250,200,25);
+        this.direccion = this.generarCampoDeTexto(150,200,200,25);
+        this.numero = this.generarCampoDeTexto(150,250,200,25);
 
 
-        this.correoField = this.generarCampoDeTexto(150,300,200,25);
+        this.correo = this.generarCampoDeTexto(150,300,200,25);
 
 
 
-        aceptarBtn = this.generarBoton("Aceptar", 100,450,100,50);
-        aceptarBtn.addActionListener(this);
+        aceptar = this.generarBoton("Aceptar", 100,450,100,50);
+        aceptar.addActionListener(this);
 
-        cancelarBtn = this.generarBoton("Cancelar", 200,450,100,50);
-        cancelarBtn.addActionListener(this);
+        cancelar = this.generarBoton("Cancelar", 200,450,100,50);
+        cancelar.addActionListener(this);
     }
 
     public void registrarCliente() {
-        Cliente cliente = new Cliente(nombreField.getText(), rutField.getText(), direccionField.getText(),
-                numeroField.getText(), correoField.getText());
+        Cliente cliente = new Cliente(nombre.getText(), rutField.getText(), direccion.getText(),
+                numero.getText(), correo.getText());
 
         if(this.automotora.añadirCliente(cliente)) {
             JOptionPane.showMessageDialog(this, "Cliente registrado correctamente",
@@ -68,20 +68,20 @@ public class VentanaRegistroClientes extends Ventana implements ActionListener {
     }
 
     public void limpiarTextField() {
-        nombreField.setText("");
+        nombre.setText("");
         rutField.setText("");
-        direccionField.setText("");
-        numeroField.setText("");
-        correoField.setText("");
+        direccion.setText("");
+        numero.setText("");
+        correo.setText("");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == aceptarBtn) {
+        if(e.getSource() == aceptar) {
             registrarCliente();
             limpiarTextField();
             System.out.println(automotora.getClientes());
-        } else if(e.getSource() == cancelarBtn) {
+        } else if(e.getSource() == cancelar) {
             limpiarTextField();
             this.dispose();
             Menu menu = new Menu(this.automotora);
