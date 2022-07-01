@@ -51,7 +51,7 @@ public class VentanaRegistroClientes extends Ventana implements ActionListener {
         cancelar = this.generarBoton("Cancelar", 200,450,100,50);
         cancelar.addActionListener(this);
     }
-
+  
     public void registrarCliente() {
         Cliente cliente = new Cliente(nombre.getText(), rutField.getText(), direccion.getText(),
                 numero.getText(), correo.getText());
@@ -61,8 +61,9 @@ public class VentanaRegistroClientes extends Ventana implements ActionListener {
                     "Mensaje informativo", JOptionPane.INFORMATION_MESSAGE);
             GestorDato.registrarDato(cliente, "target.clientes.txt");
         } else {
-            JOptionPane.showMessageDialog(this, "Rut ingresado inválido",
-                    "Mensaje informativo", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this,
+                    "El rut es incorrecto o el cliente ya está registrado",
+                    "Rut ingresado inválido", JOptionPane.INFORMATION_MESSAGE);
         }
 
     }
@@ -77,14 +78,14 @@ public class VentanaRegistroClientes extends Ventana implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         if(e.getSource() == aceptar) {
             registrarCliente();
             limpiarTextField();
-            System.out.println(automotora.getClientes());
         } else if(e.getSource() == cancelar) {
             limpiarTextField();
+            new Menu(this.automotora);
             this.dispose();
-            Menu menu = new Menu(this.automotora);
         }
     }
 }
